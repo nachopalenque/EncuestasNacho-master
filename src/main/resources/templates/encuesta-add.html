@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Encuestas</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <form th:action="@{/encuesta/save}" method="POST" th:object="${encuesta}">
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre: </label>
+            <input type="text" class="form-control" placeholder="Escriba aquí el nombre" id="nombre" name="nombre" th:value="${encuesta.nombre}" >
+            <div th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+
+        </div>
+
+        <div class="mb-3">
+            <label for="apellido1" class="form-label">Primer Apellido: </label>
+            <input type="text" class="form-control" placeholder="Escriba aquí el primer apellido" id="apellido1" name="apellido1" th:value="${encuesta.apellido1}" >
+            <div th:if="${#fields.hasErrors('apellido1')}" th:errors="*{apellido1}"></div>
+
+        </div>
+
+        <div class="mb-3">
+            <label for="apellido2" class="form-label">Segundo Apellido: </label>
+            <input type="text" class="form-control" placeholder="Escriba aqui el segundo apellido" id="apellido2" name="apellido2" th:value="${encuesta.apellido2}"  >
+            <div th:if="${#fields.hasErrors('apellido2')}" th:errors="*{apellido2}"></div>
+
+        </div>
+
+        <div class="mb-3">
+            <label for="edad" class="form-label">Edad: </label>
+            <input type="number" class="form-control" placeholder="Indique aquí la edad" id="edad" name="edad" th:value="${encuesta.edad}">
+            <div th:if="${#fields.hasErrors('edad')}" th:errors="*{edad}"></div>
+
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Email: </label>
+            <input type="email" class="form-control" placeholder="Escriba aquí el E-mail" id="email" name="email" th:value="${encuesta.email}">
+            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+        </div>
+
+        <div class="mb-3">
+            <div th:if="${#fields.hasErrors('fechaInicioVisita')}" th:errors="*{fechaInicioVisita}"></div>
+            <label for="fechaInicioVisita" class="form-label">Fecha de inicio de la visita: </label>
+            <input type="date" class="form-control" id="fechaInicioVisita" name="fechaInicioVisita" th:value="${encuesta.fechaInicioVisita}">
+        </div>
+
+        <fieldset class="mb-3">
+            <legend>Motivo de la visita</legend>
+            <select class="form-select" name="motivoVisita" id="motivoVisita">
+                <option value="">Seleccione uno :</option>
+                <option value="Trabajo">Trabajo</option>
+                <option value="Estudios">Estudios</option>
+                <option value="Turismo">Turismo</option>
+                <option value="Otros">Otros</option>
+            </select>
+        </fieldset>
+
+        <fieldset class="mb-3">
+            <legend>Servicios utilizados durante la estancia</legend>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="restaurante" th:field="${encuesta.restaurante}">
+                <label class="form-check-label" for="restaurante">Restaurante</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="gimnasio" th:field="${encuesta.gimnasio}">
+                <label class="form-check-label" for="gimnasio">Gimnasio</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="spa" th:field="${encuesta.spa}">
+                <label class="form-check-label" for="spa">Spa</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="piscina" th:field="${encuesta.piscina}">
+                <label class="form-check-label" for="piscina">Piscina</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="roomService" th:field="${encuesta.roomService}">
+                <label class="form-check-label" for="roomService">Room Service</label>
+            </div>
+        </fieldset>
+
+        <fieldset class="mb-3">
+            <legend>Cheque su nivel de satisfacción</legend>
+            <div class="form-check">
+                <input type="radio" class="form-check-input" id="Muy satisfecho" th:field="${encuesta.nivelSatisfacion}" value="Muy satisfecho">
+                <label class="form-check-label" for="Muy satisfecho">Muy satisfecho</label>
+            </div>
+            <div class="form-check">
+                <input type="radio" class="form-check-input" id="Satisfecho" th:field="${encuesta.nivelSatisfacion}" value="Satisfecho">
+                <label class="form-check-label" for="Satisfecho">Satisfecho</label>
+            </div>
+            <div class="form-check">
+                <input type="radio" class="form-check-input" id="Neutral" th:field="${encuesta.nivelSatisfacion}" value="Neutral">
+                <label class="form-check-label" for="Neutral">Neutral</label>
+            </div>
+            <div class="form-check">
+                <input type="radio" class="form-check-input" id="Insatisfecho" th:field="${encuesta.nivelSatisfacion}" value="Insatisfecho">
+                <label class="form-check-label" for="Insatisfecho">Insatisfecho</label>
+            </div>
+            <div class="form-check">
+                <input type="radio" class="form-check-input" id="Muy insatisfecho" th:field="${encuesta.nivelSatisfacion}" value="Muy insatisfecho">
+                <label class="form-check-label" for="Muy insatisfecho">Muy insatisfecho</label>
+            </div>
+        </fieldset>
+
+        <div class="mb-3">
+            <label for="observaciones" class="form-label">Observaciones:</label>
+            <textarea class="form-control" id="observaciones" th:field="${encuesta.observaciones}" rows="4"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
