@@ -75,7 +75,7 @@ public class EncuestasController {
         encuesta.setId(id);
         encuestaRepository.save(encuesta);
         //redirigir al listado de productos
-        return "redirect:/encuesta-edit-success";
+        return "redirect:/admin";
     }
     //---------------------------------------------------------------
 
@@ -110,10 +110,9 @@ public class EncuestasController {
         // además el optional contiene metodos como el isPresent
         Optional<Encuesta> encuesta = encuestaRepository.findById(id);
         if(encuesta.isPresent()){
-
             //para pasarle a la vista el objeto
             model.addAttribute("encuesta",encuesta.get());
-            return "encuesta-del";
+            return "admin";
         }
 
         //redirigir al listado de productos
@@ -121,15 +120,5 @@ public class EncuestasController {
     }
 
 
-    //por post para mandar los datos
-    @PostMapping("/encuesta/eliminar/{id}")
-    public String eliminarEncuesta(@PathVariable Long id ,Encuesta encuesta)
-    {
-        encuesta.setId(id);
-        encuestaRepository.delete(encuesta);
-        //redirigir al listado de productos
-        return "redirect:/encuesta-del-success";
-    }
-    //----------------------------------------------------------------------------
 
 }
