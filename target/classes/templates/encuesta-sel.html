@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="container mt-5">
-    <form th:action="@{/encuesta/seleccionar/{id}(id=${encuesta.id})}" method="GET" th:object="${encuesta}">
+    <form th:action="@{/encuesta/volver/admin}" method="POST" th:object="${encuesta}">
         <div class="mb-3">
             <label for="nombre" class="form-label">Nombre: </label>
             <input type="text" class="form-control" placeholder="Escriba aquí el nombre" id="nombre" name="nombre" th:value="${encuesta.nombre}" >

@@ -3,6 +3,7 @@ package segund.daw.encuestas.Controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,10 +34,14 @@ public class EncuestasController {
     }
 
     @PostMapping("/encuesta/save")
-    public String saveEncuesta(Model model, Encuesta encuesta) {
+    public String saveEncuesta(Model model, Encuesta encuesta, BindingResult bindingResult) {
         model.addAttribute("encuesta", encuesta);
+        if (bindingResult.hasErrors()) {
+            return "encuesta-add";
+        }
         encuestaRepository.save(encuesta);
-        return "encuesta-success";
+        //return "encuesta-success";
+        return"redirect:/admin";
     }
 
     //----Accede al panel de admin -----------------------------
@@ -89,6 +94,7 @@ public class EncuestasController {
 
             //para pasarle a la vista el objeto
             model.addAttribute("encuesta",encuesta.get());
+
             return "encuesta-sel";
         }
 
@@ -96,6 +102,11 @@ public class EncuestasController {
         return "redirect:/admin";
     }
 
+
+    @PostMapping("/encuesta/volver/admin")
+    public String seleccionarEncuestaVolver(){
+        return "redirect:/admin";
+    }
 
 
 
@@ -110,9 +121,8 @@ public class EncuestasController {
         // además el optional contiene metodos como el isPresent
         Optional<Encuesta> encuesta = encuestaRepository.findById(id);
         if(encuesta.isPresent()){
-            //para pasarle a la vista el objeto
-            model.addAttribute("encuesta",encuesta.get());
-            return "admin";
+            encuestaRepository.deleteById(id);
+            return "redirect:/admin";
         }
 
         //redirigir al listado de productos

@@ -4,25 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Panel de Administración</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<div id="encuestas">
-    <p th:if="${#lists.isEmpty(encuestas)}">No hay encuestas</p>
-    <h1>Listado de encuestas :</h1>
+<div class="container mt-5" id="encuestas">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="mb-4">Listado de encuestas :</h1>
+            <p th:if="${#lists.isEmpty(encuestas)}" class="alert alert-warning">No hay encuestas</p>
 
-    <div th:each="encuesta: ${encuestas}">
-        <h2 th:text="${'Huesped: ' + encuesta.nombre + ' ' + encuesta.apellido1 + ' ' + encuesta.apellido2}"> </h2><br>
-        <span th:text="${'Fecha inicio de la estancia: ' + encuesta.fechaInicioVisita}"></span><br>
-        <span th:text="${'Nivel de satisfación general: ' + encuesta.nivelSatisfacion}"></span></br>
-
-        <a th:href="@{/encuesta/eliminar/{id}(id=${encuesta.id})}">borrar</a>
-        <a th:href="@{/encuesta/editar/{id}(id=${encuesta.id})}">editar</a>
-        <a th:href="@{/encuesta/seleccionar/{id}(id=${encuesta.id})}">ver</a>
-
+            <div th:each="encuesta: ${encuestas}" class="card mb-3">
+                <div class="card-body">
+                    <h2 class="card-title" th:text="${'Huesped: ' + encuesta.nombre + ' ' + encuesta.apellido1 + ' ' + encuesta.apellido2}"></h2>
+                    <p class="card-text">
+                        <strong>Fecha inicio de la estancia:</strong> <span th:text="${encuesta.fechaInicioVisita}"></span><br>
+                        <strong>Nivel de satisfacción general:</strong> <span th:text="${encuesta.nivelSatisfacion}"></span>
+                    </p>
+                    <div class="btn-group">
+                        <a class="btn btn-danger" th:href="@{/encuesta/eliminar/{id}(id=${encuesta.id})}">Borrar</a>
+                        <a class="btn btn-warning" th:href="@{/encuesta/editar/{id}(id=${encuesta.id})}">Editar</a>
+                        <a class="btn btn-primary" th:href="@{/encuesta/seleccionar/{id}(id=${encuesta.id})}">Ver</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <br>
-
-
 </div>
+
+<!-- Bootstrap JS and dependencies (optional) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
