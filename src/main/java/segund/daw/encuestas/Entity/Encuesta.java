@@ -29,6 +29,10 @@ public class Encuesta {
     @NotEmpty(message = "Los apellidos no pueden estar en blanco. Además deben tener como mínimo dos carácteres")
     private String apellido2;
 
+    @NotEmpty(message = "El teléfono no puede estar en blanco")
+    private String telefono;
+
+
     @Email
     @NotEmpty(message = "El Email no puede estar en blanco")
     private String email;
@@ -61,9 +65,10 @@ public class Encuesta {
 
     }
 
-    public Encuesta(Long id, String nombre, String apellido1, String apellido2, String email, Integer edad, LocalDate fechaInicioVisita, String motivoVisita, String nivelSatisfacion, String observaciones, Boolean restaurante, Boolean gimnasio, Boolean spa, Boolean piscina, boolean roomService) {
+    public Encuesta(Long id, String nombre, String apellido1, String apellido2, String telefono,String email, Integer edad, LocalDate fechaInicioVisita, String motivoVisita, String nivelSatisfacion, String observaciones, Boolean restaurante, Boolean gimnasio, Boolean spa, Boolean piscina, boolean roomService) {
         this.id = id;
         this.nombre = nombre;
+        this.telefono = telefono;
         this.apellido1 = apellido1;
         this.apellido2 = apellido2;
         this.email = email;
@@ -77,6 +82,22 @@ public class Encuesta {
         this.spa = spa;
         this.piscina = piscina;
         this.roomService = roomService;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public void setRoomService(Boolean roomService) {
+        this.roomService = roomService;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public Boolean getRoomService() {
+        return roomService;
     }
 
     public void setRestaurante(Boolean restaurante) {

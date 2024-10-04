@@ -12,41 +12,49 @@
         <div class="mb-3">
             <label for="nombre" class="form-label">Nombre: </label>
             <input type="text" class="form-control" placeholder="Escriba aquí el nombre" id="nombre" name="nombre" th:value="${encuesta.nombre}" >
-            <div th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+            <div th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="error"></div>
 
         </div>
 
         <div class="mb-3">
             <label for="apellido1" class="form-label">Primer Apellido: </label>
             <input type="text" class="form-control" placeholder="Escriba aquí el primer apellido" id="apellido1" name="apellido1" th:value="${encuesta.apellido1}" >
-            <div th:if="${#fields.hasErrors('apellido1')}" th:errors="*{apellido1}"></div>
+            <div th:if="${#fields.hasErrors('apellido1')}" th:errors="*{apellido1}" class="error"></div>
 
         </div>
 
         <div class="mb-3">
             <label for="apellido2" class="form-label">Segundo Apellido: </label>
             <input type="text" class="form-control" placeholder="Escriba aqui el segundo apellido" id="apellido2" name="apellido2" th:value="${encuesta.apellido2}"  >
-            <div th:if="${#fields.hasErrors('apellido2')}" th:errors="*{apellido2}"></div>
+            <div th:if="${#fields.hasErrors('apellido2')}" th:errors="*{apellido2}" class="error"></div>
+
+        </div>
+
+        <div class="mb-3">
+            <label for="telefono" class="form-label">Telefono: </label>
+            <input type="text" class="form-control" placeholder="Escriba aqui el número de telefono" id="telefono" name="telefono" th:value="${encuesta.telefono}"  >
+            <div th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}" class="error"></div>
 
         </div>
 
         <div class="mb-3">
             <label for="edad" class="form-label">Edad: </label>
             <input type="number" class="form-control" placeholder="Indique aquí la edad" id="edad" name="edad" th:value="${encuesta.edad}">
-            <div th:if="${#fields.hasErrors('edad')}" th:errors="*{edad}"></div>
+            <div th:if="${#fields.hasErrors('edad')}" th:errors="*{edad}" class="error"></div>
 
         </div>
 
         <div class="mb-3">
             <label for="email" class="form-label">Email: </label>
             <input type="email" class="form-control" placeholder="Escriba aquí el E-mail" id="email" name="email" th:value="${encuesta.email}">
-            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></div>
         </div>
 
         <div class="mb-3">
-            <div th:if="${#fields.hasErrors('fechaInicioVisita')}" th:errors="*{fechaInicioVisita}"></div>
             <label for="fechaInicioVisita" class="form-label">Fecha de inicio de la visita: </label>
             <input type="date" class="form-control" id="fechaInicioVisita" name="fechaInicioVisita" th:value="${encuesta.fechaInicioVisita}">
+            <div th:if="${#fields.hasErrors('fechaInicioVisita')}" th:errors="*{fechaInicioVisita}" class="error"></div>
+
         </div>
 
         <fieldset class="mb-3">

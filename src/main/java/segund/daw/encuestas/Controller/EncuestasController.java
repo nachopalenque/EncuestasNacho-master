@@ -1,6 +1,7 @@
 package segund.daw.encuestas.Controller;
 
 
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -34,7 +35,7 @@ public class EncuestasController {
     }
 
     @PostMapping("/encuesta/save")
-    public String saveEncuesta(Model model, Encuesta encuesta, BindingResult bindingResult) {
+    public String saveEncuesta(Model model, @Valid Encuesta encuesta, BindingResult bindingResult) {
         model.addAttribute("encuesta", encuesta);
         if (bindingResult.hasErrors()) {
             return "encuesta-add";
