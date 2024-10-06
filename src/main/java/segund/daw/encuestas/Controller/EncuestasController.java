@@ -54,6 +54,11 @@ public class EncuestasController {
         //Pasamos los datos a la vista
         model.addAttribute("encuestas",encuestas);
         model.addAttribute("media",calcularPromedio(encuestas));
+        model.addAttribute("MuySatisfecho",calculaParteSatisfacion("Muy satisfecho",encuestas));
+        model.addAttribute("Satisfecho",calculaParteSatisfacion("Satisfecho",encuestas));
+        model.addAttribute("Neutral",calculaParteSatisfacion("Neutral",encuestas));
+        model.addAttribute("Insatisfecho",calculaParteSatisfacion("Insatisfecho",encuestas));
+        model.addAttribute("Muyinsatisfecho",calculaParteSatisfacion("Muy insatisfecho",encuestas));
 
         return "admin";
     }
@@ -69,6 +74,30 @@ public class EncuestasController {
         return media;
     }
 
+    public Double calculaParteSatisfacion(String nivelSatisfacion, List<Encuesta> encuestas){
+
+        int numNivelSatisfacion=0;
+
+        for ( Encuesta encuesta : encuestas) {
+
+            if (encuesta.getNivelSatisfacion().equals(nivelSatisfacion)){
+                numNivelSatisfacion++;
+            }
+        }
+        return calcularPorcentajeDelTotal(numNivelSatisfacion,encuestas.size());
+    }
+
+    public Double calcularPorcentajeDelTotal(Integer parte, Integer total){
+
+    double porcentaje = 0;
+
+        if (total != 0) {
+            // Calcular el porcentaje
+           porcentaje = (parte / total) * 100;
+        }
+        return porcentaje;
+
+    }
 
     //----- Métodos para editar la encuesta -----------------------------
     @GetMapping("/encuesta/editar/{id}")
@@ -150,6 +179,11 @@ public class EncuestasController {
 
         model.addAttribute("encuestas",encuestas);
         model.addAttribute("media",calcularPromedio(encuestas));
+        model.addAttribute("MuySatisfecho",calculaParteSatisfacion("Muy satisfecho",encuestas));
+        model.addAttribute("Satisfecho",calculaParteSatisfacion("Satisfecho",encuestas));
+        model.addAttribute("Neutral",calculaParteSatisfacion("Neutral",encuestas));
+        model.addAttribute("Insatisfecho",calculaParteSatisfacion("Insatisfecho",encuestas));
+        model.addAttribute("Muyinsatisfecho",calculaParteSatisfacion("Muy insatisfecho",encuestas));
 
         return "admin";
 

@@ -13,8 +13,15 @@
         <div class="col-12">
             <h1 class="mb-4">Listado de encuestas :</h1>
             <p th:if="${#lists.isEmpty(encuestas)}" class="alert alert-warning">No hay encuestas</p>
-            <p class="alert alert-success">La media de edad de los encuestados es de: <span th:text="${media}"></span></p>
+            <p class="alert alert-success">La media de edad de los encuestados es de: <span th:text="${media}"> años</span></p>
             <p class="alert alert-success">Nº Encuestas: [[${#lists.size(encuestas)}]]</p>
+            <p>Porcentaje de satisfación por niveles de todos los encuestados:</p>
+            <p class="alert alert-success">El porcentaje de encuestados con nivel de satisfación -> Muy Satisfecho es de : <span th:text="${MuySatisfecho}"> %</span></p>
+            <p class="alert alert-success">El porcentaje de encuestados con nivel de satisfación -> Satisfecho es de : <span th:text="${Satisfecho}"> %</span></p>
+            <p class="alert alert-primary">El porcentaje de encuestados con nivel de satisfación -> Neutral es de : <span th:text="${Neutral}"> %</span></p>
+            <p class="alert alert-warning">El porcentaje de encuestados con nivel de satisfación -> Insatisfecho es de : <span th:text="${Insatisfecho}"> %</span></p>
+            <p class="alert alert-danger">El porcentaje de encuestados con nivel de satisfación -> Muy Insatisfecho es de : <span th:text="${Muyinsatisfecho}"> %</span></p>
+
             <div>
                 <form th:action="@{/encuesta/filtrar}" method="GET" >
 
