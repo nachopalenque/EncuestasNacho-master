@@ -53,11 +53,21 @@ public class EncuestasController {
 
         //Pasamos los datos a la vista
         model.addAttribute("encuestas",encuestas);
+        model.addAttribute("media",calcularPromedio(encuestas));
 
         return "admin";
     }
     //----------------------------------------------------------------
 
+    public Double calcularPromedio(List<Encuesta> encuestas){
+        double media=0;
+
+        for ( Encuesta encuesta : encuestas) {
+            media = media+encuesta.getEdad();
+        }
+        media= media / encuestas.size();
+        return media;
+    }
     //----- Métodos para editar la encuesta -----------------------------
     @GetMapping("/encuesta/editar/{id}")
     public String editarEncuesta(@PathVariable Long id, Model model){
@@ -137,6 +147,7 @@ public class EncuestasController {
         List<Encuesta> encuestas  = (nivelSatisfacion.equals("Todos") || nivelSatisfacion.equals("") ) ? this.encuestaRepository.findAll() : this.encuestaRepository.findByNivelSatisfacion(nivelSatisfacion);
 
         model.addAttribute("encuestas",encuestas);
+        model.addAttribute("media",calcularPromedio(encuestas));
 
         return "admin";
 
