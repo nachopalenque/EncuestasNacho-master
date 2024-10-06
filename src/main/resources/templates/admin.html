@@ -13,7 +13,28 @@
         <div class="col-12">
             <h1 class="mb-4">Listado de encuestas :</h1>
             <p th:if="${#lists.isEmpty(encuestas)}" class="alert alert-warning">No hay encuestas</p>
+            <p class="alert alert-success">Nº Encuestas: [[${#lists.size(encuestas)}]]</p>
+            <div>
+                <form th:action="@{/encuesta/filtrar}" method="GET" >
 
+                    <fieldset class="mb-3">
+                        <legend>Mostrar encuestas por motivo de la visita: </legend>
+                        <select class="form-select" name="nivelSatisfacion" id="nivelSatisfacion">
+                            <option value="">Seleccione uno :</option>
+                            <option value="Muy satisfecho">Muy satisfecho</option>
+                            <option value="Satisfecho">Satisfecho</option>
+                            <option value="Neutral">Neutral</option>
+                            <option value="Insatisfecho">Insatisfecho</option>
+                            <option value="Muy insatisfecho">Muy insatisfecho</option>
+                            <option value="Todos">Mostrar todos</option>
+
+                        </select>
+                    </fieldset>
+
+                    <button type="submit" class="btn btn-primary">Filtrar</button>
+
+                </form>
+            </div>
             <div th:each="encuesta: ${encuestas}" class="card mb-3">
                 <div class="card-body">
                     <h2 class="card-title" th:text="${'Huesped: ' + encuesta.nombre + ' ' + encuesta.apellido1 + ' ' + encuesta.apellido2}"></h2>

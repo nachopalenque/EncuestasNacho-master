@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import segund.daw.encuestas.Entity.Encuesta;
 import segund.daw.encuestas.Repository.EncuestaRepository;
 
@@ -130,6 +131,16 @@ public class EncuestasController {
         return "redirect:/admin";
     }
 
+    @GetMapping("/encuesta/filtrar")
+    public String recibirString(@RequestParam("nivelSatisfacion") String nivelSatisfacion,Model model) {
 
+        List<Encuesta> encuestas  = (nivelSatisfacion.equals("Todos") || nivelSatisfacion.equals("") ) ? this.encuestaRepository.findAll() : this.encuestaRepository.findByNivelSatisfacion(nivelSatisfacion);
+
+        model.addAttribute("encuestas",encuestas);
+
+        return "admin";
+
+
+    }
 
 }

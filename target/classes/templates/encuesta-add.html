@@ -31,6 +31,13 @@
         </div>
 
         <div class="mb-3">
+            <label for="telefono" class="form-label">Telefono: </label>
+            <input type="text" class="form-control" placeholder="Escriba aqui el número de telefono" id="telefono" name="telefono" th:value="${encuesta.telefono}"  >
+            <div th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}" class="error"></div>
+
+        </div>
+
+        <div class="mb-3">
             <label for="edad" class="form-label">Edad: </label>
             <input type="number" class="form-control" placeholder="Indique aquí la edad" id="edad" name="edad" th:value="${encuesta.edad}">
             <div th:if="${#fields.hasErrors('edad')}" th:errors="*{edad}" class="error"></div>
