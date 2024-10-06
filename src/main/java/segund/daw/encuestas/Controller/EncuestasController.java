@@ -68,6 +68,8 @@ public class EncuestasController {
         media= media / encuestas.size();
         return media;
     }
+
+
     //----- Métodos para editar la encuesta -----------------------------
     @GetMapping("/encuesta/editar/{id}")
     public String editarEncuesta(@PathVariable Long id, Model model){
