@@ -17,8 +17,7 @@ public class Encuesta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)     //Esta anotación especifica que la clave primaria sea "auto-increment"
     private Long id;
 
-    //@NotNull no permite nulos pero si ''
-    //@NotEmpty no permite ni nulos ni vacios
+
     @Size(min = 2, message = "El nombre ha de tener como mínimo dos caracteres.")
     @NotEmpty(message = "El nombre no puede estar en blanco. Además debe tener como mínimo dos carácteres")
     private String nombre;

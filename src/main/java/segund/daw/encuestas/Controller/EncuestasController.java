@@ -122,7 +122,6 @@ public class EncuestasController {
     {
         encuesta.setId(id);
         encuestaRepository.save(encuesta);
-        //redirigir al listado de productos
         return "redirect:/admin";
     }
     //---------------------------------------------------------------
@@ -141,7 +140,6 @@ public class EncuestasController {
             return "encuesta-sel";
         }
 
-        //redirigir al listado de productos
         return "redirect:/admin";
     }
 
@@ -160,15 +158,13 @@ public class EncuestasController {
     @GetMapping("/encuesta/eliminar/{id}")
     public String eliminarEncuestaBorrar(@PathVariable Long id , Model model)
     {
-        //optional para contemplar la posibilidad de que no exista producto con ese id
-        // además el optional contiene metodos como el isPresent
+
         Optional<Encuesta> encuesta = encuestaRepository.findById(id);
         if(encuesta.isPresent()){
             encuestaRepository.deleteById(id);
             return "redirect:/admin";
         }
 
-        //redirigir al listado de productos
         return "redirect:/admin";
     }
 
