@@ -19,16 +19,20 @@ public class Encuesta {
 
     //@NotNull no permite nulos pero si ''
     //@NotEmpty no permite ni nulos ni vacios
-
+    @Size(min = 2, message = "El nombre ha de tener como mínimo dos caracteres.")
     @NotEmpty(message = "El nombre no puede estar en blanco. Además debe tener como mínimo dos carácteres")
     private String nombre;
 
+    @Size(min = 2, message = "El apellido ha de tener como mínimo dos caracteres.")
     @NotEmpty(message = "Los apellidos no pueden estar en blanco. Además deben tener como mínimo dos carácteres")
     private String apellido1;
 
+    @Size(min = 2, message = "El apellido ha de tener como mínimo dos caracteres.")
     @NotEmpty(message = "Los apellidos no pueden estar en blanco. Además deben tener como mínimo dos carácteres")
     private String apellido2;
 
+    @Size(min = 9, message = "El número de teléfono tiene menos de 9 digitos. El número de teléfono ha de tener 9 digitos")
+    @Size(max = 9, message = "El número de teléfono tiene mas de 9 digitos. El número de teléfono ha de tener 9 digitos")
     @NotEmpty(message = "El teléfono no puede estar en blanco")
     private String telefono;
 

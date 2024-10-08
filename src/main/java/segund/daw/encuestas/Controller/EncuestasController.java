@@ -93,7 +93,7 @@ public class EncuestasController {
 
         if (total != 0) {
             // Calcular el porcentaje
-           porcentaje = (parte / total) * 100;
+           porcentaje = ((double)parte / total) * 100;
         }
         return porcentaje;
 
